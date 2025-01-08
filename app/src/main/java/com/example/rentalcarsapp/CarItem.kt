@@ -2,6 +2,7 @@ package com.example.rentalcarsapp
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,8 +15,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -51,9 +53,70 @@ fun CarItem(
         ) {
             Column {
                 CarInfo(car = car)
+                Spacer(modifier = Modifier.height(20.dp))
+                Rating(car = car)
+                Spacer(modifier = Modifier.height(20.dp))
+                BuyButton(car = car)
             }
         }
     }
+}
+
+@Composable
+fun BuyButton(modifier: Modifier = Modifier, car: Car) {
+
+}
+
+@Composable
+fun Rating(modifier: Modifier = Modifier, car: Car) {
+    Column(
+        modifier = modifier.padding(start = 20.dp),
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box {
+                Rater(
+                    image = car.recommenders[0]
+                )
+                Rater(
+                    image = car.recommenders[1],
+                    modifier = modifier.padding(start = 24.dp)
+                )
+                Rater(
+                    image = car.recommenders[2],
+                    modifier = modifier.padding(start = 48.dp)
+                )
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "${car.recommendationRate}%",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+            )
+        }
+            Text(
+                text = "${car.recommendation}% recommended",
+                fontSize = 12.sp,
+                color = Color.Black.copy(alpha = 0.8f),
+            )
+    }
+}
+
+@Composable
+fun Rater(modifier: Modifier = Modifier, image: Int) {
+    Image(
+        painter = painterResource(image),
+        contentDescription = null,
+        modifier = modifier
+            .size(30.dp)
+            .clip(CircleShape)
+            .border(
+                color = Color.Black,
+                width = 1.dp,
+                shape = CircleShape
+            )
+    )
 }
 
 @Composable
@@ -88,8 +151,19 @@ fun CarInfo(modifier: Modifier = Modifier, car: Car) {
                         .size(10.dp)
                         .clip(RoundedCornerShape(100.dp))
                         .background(car.color)
+                        .border(
+                            color = Color.Black,
+                            width = 1.dp,
+                            shape = CircleShape
+                        )
                 )
             }
+            Text(
+                text = car.name,
+                fontSize = 12.sp,
+                color = Color.Black,
+                fontWeight = FontWeight.SemiBold
+            )
         }
     }
 }
@@ -117,7 +191,6 @@ fun CarItemPreview() {
                 bgColor = Primary
             )
         )
-
 
     }
 }
