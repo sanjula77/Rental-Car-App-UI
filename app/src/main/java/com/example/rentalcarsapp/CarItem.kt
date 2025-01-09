@@ -17,6 +17,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowForward
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,14 +36,11 @@ import com.example.rentalcarsapp.ui.theme.Primary
 import com.example.rentalcarsapp.ui.theme.RentalCarsAppTheme
 
 @Composable
-fun CarItem(
-    modifier: Modifier = Modifier,
-    car: Car
-) {
+fun CarItem(modifier: Modifier = Modifier, car: Car) {
     Box(
         modifier = modifier
         .padding(horizontal = 16.dp)
-        .clip(RoundedCornerShape(20.dp))
+        .clip(RoundedCornerShape(29.dp))
         .background(car.bgColor)
     ) {
         Image(
@@ -55,16 +56,43 @@ fun CarItem(
                 CarInfo(car = car)
                 Spacer(modifier = Modifier.height(20.dp))
                 Rating(car = car)
-                Spacer(modifier = Modifier.height(20.dp))
-                BuyButton(car = car)
             }
+            BuyButton(car = car)
         }
     }
 }
 
 @Composable
 fun BuyButton(modifier: Modifier = Modifier, car: Car) {
-
+    Row(
+        modifier = modifier
+            .clip(RoundedCornerShape(30.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .padding(vertical = 8.dp)
+            .padding(start = 16.dp, end = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column {
+            Text(
+                text = "${car.rentalDays} Days",
+                fontSize = 10.sp,
+                color = MaterialTheme.colorScheme.onBackground.copy(0.8f)
+            )
+            Text(
+                text = "$${car.price}.00",
+                fontSize = 14.sp,
+                color = MaterialTheme.colorScheme.onBackground,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
+        Spacer(modifier = Modifier.width(10.dp))
+        Icon(
+            imageVector = Icons.Rounded.ArrowForward,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.size(24.dp)
+        )
+    }
 }
 
 @Composable
