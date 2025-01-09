@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -52,7 +53,6 @@ class MainActivity : ComponentActivity() {
                             Pager(
                                 modifier = Modifier.fillMaxWidth()
                                     .hazeChild(state = hazeState)
-
                             )
                         }
                     }
@@ -60,9 +60,9 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     HomeScreen(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding),
-                        hazeState = hazeState
+                            .fillMaxSize(),
+                        hazeState = hazeState,
+                        paddingValues = innerPadding
                     )
                 }
             }
@@ -73,7 +73,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    hazeState: HazeState
+    hazeState: HazeState,
+    paddingValues: PaddingValues
 ) {
     Box(
         modifier = modifier
@@ -88,7 +89,8 @@ fun HomeScreen(
                         blurRadius = 13.dp,
                         tint = Blur
                     )
-                )
+                ),
+            paddingValues = paddingValues
         )
     }
 }

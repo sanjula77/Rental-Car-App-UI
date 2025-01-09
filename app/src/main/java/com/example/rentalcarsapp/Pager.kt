@@ -19,26 +19,30 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.rentalcarsapp.ui.theme.Blur
 import com.example.rentalcarsapp.ui.theme.Primary
 
+@Preview(showBackground = true)
 @Composable
 fun Pager(modifier: Modifier = Modifier) {
-    Column {
-        Spacer(modifier = modifier.height(10.dp))
+    Column(
+        modifier = modifier
+    ) {
+
         Text(
             text = "Luxurious Cars",
-            color = Color.Black,
+            color = Color.White,
             fontSize = 25.sp,
             fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(horizontal = 22.dp)
+            modifier = Modifier.padding(horizontal = 22.dp).padding(top = 18.dp)
         )
-        Spacer(modifier = modifier.height(10.dp))
-        Row(modifier = Modifier.padding(horizontal = 50.dp)){
+        Row(modifier = Modifier.padding(horizontal = 50.dp).padding(top = 12.dp, bottom = 4.dp)){
             Text(
                 text = "Luxurious",
-                color = Color.Black,
+                color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.weight(1f)
@@ -48,14 +52,14 @@ fun Pager(modifier: Modifier = Modifier) {
             ) {
                 Text(
                     text = "VIP Cars",
-                    color = Color.Black,
+                    color = Color.White,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "new",
-                    color = Color.Black,
+                    color = Color.White,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
@@ -68,7 +72,6 @@ fun Pager(modifier: Modifier = Modifier) {
                 )
             }
         }
-        Spacer(modifier = modifier.height(10.dp))
         Row(
             modifier = Modifier,
             verticalAlignment = Alignment.Bottom
@@ -80,7 +83,7 @@ fun Pager(modifier: Modifier = Modifier) {
             )
             HorizontalDivider(
                 modifier = Modifier.weight(1f),
-                thickness = 1.dp,
+                thickness = 0.dp,
                 color = MaterialTheme.colorScheme.onBackground
             )
         }

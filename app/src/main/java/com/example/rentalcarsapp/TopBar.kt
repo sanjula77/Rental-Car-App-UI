@@ -44,7 +44,7 @@ fun TopBar(
                     .height(60.dp)
                     .border(
                         width = 1.dp,
-                        color = Color.Black,
+                        color = Color.White,
                         shape = RoundedCornerShape(100.dp)
                     )
                     .padding(horizontal = 16.dp),
@@ -53,20 +53,20 @@ fun TopBar(
                 Icon(
                     imageVector = Icons.Rounded.Search,
                     contentDescription = null,
-                    tint = Color.Black,
+                    tint = Color.White,
                     modifier = Modifier.size(28.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
                     text = "Search cars",
-                    color = Color.Black,
+                    color = Color.White,
                     fontSize = 14.sp,
                     modifier = Modifier.weight(1f)
                 )
                 Icon(
                     imageVector = Icons.Rounded.Mic,
                     contentDescription = null,
-                    tint = Color.Black,
+                    tint = Color.White,
                     modifier = Modifier.size(28.dp)
                 )
             }
